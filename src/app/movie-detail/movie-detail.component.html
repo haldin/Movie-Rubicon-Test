@@ -1,0 +1,22 @@
+<a class="back" (click)="backButton()">Back</a>
+
+<div>
+    <iframe
+    class="video"
+    *ngIf="videoKey!==undefined"
+    width="640" height="360"
+    [src]="safeUrl"
+    frameborder="0">
+  </iframe>
+</div>
+
+<div class="container">
+  <div class="">
+    <div class="movie-detail">
+      <img *ngIf="videoKey===undefined"
+        src={{imageUrl+movie.poster_path}} alt="">
+      <h3>{{movie.title}}</h3>
+      <p>{{movie.overview}}</p>
+    </div>
+  </div>
+</div>

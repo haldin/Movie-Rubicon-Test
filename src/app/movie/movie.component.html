@@ -1,0 +1,47 @@
+<div>
+
+  <div>
+    <ul class="tabs">
+      <li [routerLink]="['/movies']" >Movies</li>
+      <li [routerLink]="['/tv-shows/'+searchOther+'/tv']" >TV-Shows</li>
+    </ul>
+  </div>
+
+  <form #SearchForm="ngForm" >
+    <input type="text"
+    class="search"
+    required
+    name="search"
+    placeholder="Search"
+    minlength="3"
+    (ngModelChange)="search($event)"
+    [(ngModel)]="dataS">
+  </form>
+
+
+  <div *ngIf="!isSearch" class="container">
+    <div *ngFor="let film of filmovi | slice:0:10">
+      <div style="cursor: pointer;" class="movie" [routerLink]="['/movie/'+film.id+'/movie']">
+        <div class="movie">
+            <img style="width:100%" src="{{imageUrl+film.poster_path}}">
+            <h3>{{film.original_title}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isSearch" class="container">
+    <div *ngFor="let movie of movies">
+      <div style="cursor: pointer;" class="movie" [routerLink]="['/movie/'+movie.id+'/movie']" >
+        <div class="movie">
+          <img style="width:100%" src="{{imageUrl+movie.poster_path}}">
+          <h3>{{movie.original_title}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
